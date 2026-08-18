@@ -36,31 +36,3 @@ jobs:
           name: monitoring-engine-windows
           path: dist/*.whl
 
-  build-linux:
-    name: Linux x64
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Install Rust
-        uses: dtolnay/rust-toolchain@stable
-        with:
-          toolchain: stable
-          components: rustfmt
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.13"
-
-      - name: Install Maturin
-        run: pip install maturin
-
-      - name: Build Wheel
-        run: maturin build --release --out dist --find-interpreter
-
-      - name: Upload Artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: monitoring-engine-linux
-          path: dist/*.whl
