@@ -8,13 +8,26 @@ use std::path::Path;
 // MONITORING ENGINE — Pemindaian Disk, Info Sistem, Pembersihan
 // ═══════════════════════════════════════════════════════════
 
-#[derive(Debug, Clone, serde::Serialize, serde::Deserialize)]
-struct DiskInfo {
+// Add #[pyclass] to make it a Python object
+#[pyclass]
+#[derive(Debug, Clone)]
+pub struct DiskInfo {
+    #[pyo3(get)] // Exposes the property to Python
     pub path: String,
+    
+    #[pyo3(get)]
     pub name: String,
+    
+    #[pyo3(get)]
     pub total_bytes: u64,
+    
+    #[pyo3(get)]
     pub used_bytes: u64,
+    
+    #[pyo3(get)]
     pub free_bytes: u64,
+    
+    #[pyo3(get)]
     pub percent_used: f64,
 }
 
