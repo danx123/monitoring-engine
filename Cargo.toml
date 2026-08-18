@@ -1,0 +1,21 @@
+[package]
+name = "monitoring_engine"
+version = "0.1.0"
+edition = "2021"
+description = "Disk & System Monitoring Engine — Cepat & Akurat"
+
+[lib]
+name = "monitoring_engine"
+crate-type = ["cdylib"]
+
+[dependencies]
+pyo3 = { version = "0.22", features = ["extension-module", "abi3-py310"] }
+sysinfo = "0.30"
+ahash = "0.8"
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+strip = true
+panic = "abort"
